@@ -79,7 +79,7 @@ class OptionFile():
 
 
             print (self.file_md5.hexdigest())
-            self.ui_obj.complate_time_label.setText("本次制作完成时间："+
+            self.ui_obj.complate_time_label.setText("本次完成时间："+
                 str(get_datetime() + " 长度：" + str(self.file_len)))
 
 if __name__ == '__main__':
