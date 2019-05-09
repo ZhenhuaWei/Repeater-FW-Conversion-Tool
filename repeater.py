@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'repeater.ui'
 #
-# Created by: PyQt5 UI code generator 5.11.2
+# Created by: PyQt5 UI code generator 5.5.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -11,9 +11,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Repeater(object):
     def setupUi(self, Repeater):
         Repeater.setObjectName("Repeater")
-        Repeater.resize(453, 195)
-        Repeater.setMinimumSize(QtCore.QSize(453, 195))
-        Repeater.setMaximumSize(QtCore.QSize(453, 195))
+        Repeater.resize(453, 189)
+        Repeater.setMinimumSize(QtCore.QSize(453, 180))
+        Repeater.setMaximumSize(QtCore.QSize(453, 189))
         self.centralwidget = QtWidgets.QWidget(Repeater)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.centralwidget)
@@ -59,12 +59,12 @@ class Ui_Repeater(object):
         self.textBrowser.setHtml(_translate("Repeater", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Sans Serif\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'SimSun\';\">使用说明：</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'SimSun\';\">1. 选择将要制作的bin文件；</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'SimSun\';\">2. 点击制作；</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'SimSun\';\">3. 制作成功后会在bin目录下以当前时间创建一个带时间戳文件夹，文件夹中有code_msg.txt、termin.txt两个文件；</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'SimSun\';\">4. 将code_msg.txt、termin.txt两个文件复制至U盘，该两文件即为中继器升级所必须的文件。</span></p></body></html>"))
+"</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">使用说明：</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">1. 选择将要制作的bin文件；</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">2. 点击制作；</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">3. 制作成功后会在bin目录下以当前时间创建一个带时间戳文件夹，文件夹中有code_msg.txt、termin.txt两个文件；</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">4. 将code_msg.txt、termin.txt两个文件复制至U盘，该两文件即为中继器升级所必须的文件。</p></body></html>"))
         self.chose_button.setText(_translate("Repeater", "选择固件"))
         self.make_button.setText(_translate("Repeater", "制作"))
 
