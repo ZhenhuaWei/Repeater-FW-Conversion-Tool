@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import sys
 import hashlib
+from shutil import copy
 from os import path,makedirs
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt
@@ -8,8 +9,8 @@ from repeater import Ui_Repeater
 from datetime import datetime
 from PyQt5.QtGui import QPixmap,QPalette
 
-updata_head_filename = "termin.txt"
-updata_filename = "code_msg.txt"
+updata_head_filename = "code_msg.txt"
+updata_filename = "termin.txt"
 
 
 def get_datetime_str():
@@ -46,7 +47,6 @@ def get_md5sum_and_filelen(filename):
 
 class OptionFile():
     def __init__(self, ui_obj, main_window_obj):
-        print("test __init__")
         self.ui_obj = ui_obj
         self.main_window_obj = main_window_obj
         self.fw_path = ""
@@ -55,11 +55,9 @@ class OptionFile():
         self.init()
 
     def init(self):
-        print("test init")
-
         self.ui_obj.chose_button.clicked.connect(self.chose_fw_path)
         self.ui_obj.make_button.clicked.connect(self.make_fw)
-        print("end")
+
 
     def clear(self):
         self.ui_obj.complate_time_label.setText("")
@@ -67,7 +65,6 @@ class OptionFile():
         self.ui_obj.result_label.setAutoFillBackground(False)
 
     def chose_fw_path(self):
-        print("test chose_fw_path")
         open = QtWidgets.QFileDialog()
         filename,  _ = open.getOpenFileName()
         if filename:
@@ -78,7 +75,7 @@ class OptionFile():
         self.clear()
 
     def make_fw(self):
-        print("test make_fw")
+        # print("test make_fw")
         self.fw_path = self.ui_obj.path_lineedit.text()
         if self.fw_path == "" or path.exists(self.fw_path) == False:
             QtWidgets.QMessageBox.critical(self.main_window_obj, "打开错误", "请选择正确的文件！")
@@ -93,11 +90,25 @@ class OptionFile():
                     return
 
                 self.file_md5, self.file_len = get_md5sum_and_filelen(self.fw_path)
-                print (self.file_md5.hexdigest())
+                data = get_datetime()
+                md5_str = str(self.file_md5.hexdigest())
+                # print (md5_str)
 
                 updata_head_filename_fd = open(folder_path+"/"+updata_head_filename, "a+")
+                updata_head_filename_fd.write(chr(int(data[0],16)))
+                updata_head_filename_fd.write(chr(int(data[1],16)))
+                updata_head_filename_fd.write(chr(int(data[2],16)))
+                for x in range(0,16):
+                    updata_head_filename_fd.write(chr(int(md5_str[x*2:(x+1)*2],16)))
+                updata_head_filename_fd.write(chr(self.file_len))
+                updata_head_filename_fd.close()
+
+                copy(self.fw_path, folder_path+"/"+updata_filename)
                 updata_filename_fd = open(folder_path+"/"+updata_filename, "a+")
-                #操作
+
+                with open(folder_path+"/"+updata_head_filename, "r") as updata_head_filename_fd:
+                    updata_head_data = updata_head_filename_fd.read()
+                    updata_filename_fd.write(updata_head_data)
 
                 updata_head_filename_fd.close()
                 updata_filename_fd.close()
@@ -110,7 +121,8 @@ class OptionFile():
                 self.ui_obj.result_label.setAlignment(Qt.AlignCenter)
                 self.ui_obj.complate_time_label.setText("本次制作完成时间："+
                     str(get_datetime_str() + " 长度：" + str(self.file_len)))
-            except:
+            except Exception as e:
+                # print (repr(e))
                 QtWidgets.QMessageBox.critical(self.main_window_obj, "错误", "制作失败，请重试！")
                 self.clear()
 
